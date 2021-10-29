@@ -1,16 +1,12 @@
 import * as React from "react";
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
+import AmountDue from "./components/AmountDue";
 
 export default function App() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Universal React with Expo</Text>
-    </View>
+    <SafeAreaView >
+      <Text>this my first app</Text>
+      <AmountDue/>
+    </SafeAreaView>
   );
 }
