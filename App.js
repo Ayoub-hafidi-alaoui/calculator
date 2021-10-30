@@ -9,16 +9,16 @@ export default function App() {
       <AmountDue title={"per person"} subTotal={75.98 /2} tipPercent={tipPercent}/>
       <AmountDue title={"Amount Due"} subTotal={75.98 /2} tipPercent={tipPercent}/>
       <View style={styles.tipSelector} >
-        <Pressable style={styles.tipItem}>
+        <Pressable style={styles.tipItem(tipPercent,10)} onPress={()=>setTipPercent(10)}>
           <Text style={styles.textWhite}>10%</Text>
         </Pressable>
-        <Pressable style={styles.tipItem}>
+        <Pressable style={styles.tipItem(tipPercent,15)} onPress={()=>setTipPercent(15)}>
           <Text style={styles.textWhite}>15%</Text>
         </Pressable>
-        <Pressable style={styles.tipItem}>
+        <Pressable style={styles.tipItem(tipPercent,20)} onPress={()=>setTipPercent(20)}>
           <Text style={styles.textWhite}>20%</Text>
         </Pressable>
-        <Pressable style={styles.tipItem}>
+        <Pressable style={styles.tipItem(tipPercent,25)} onPress={()=>setTipPercent(25)}>
           <Text style={styles.textWhite}>25%</Text>
         </Pressable>
       </View>
@@ -36,15 +36,15 @@ const styles=StyleSheet.create({
     flexDirection:'row',
     marginTop:20,
   },
-  tipItem:{
-    backgroundColor:'#909090',
-    margin:5,
-    padding:10,
-    borderRadius:50,
-  },
   textWhite:{
     color: '#f4f3f3',
     fontWeight:'800',
     fontSize:20
-  }
+  },
+  tipItem:(tipPercent,selectedTipPercent)=>({
+    backgroundColor:(tipPercent===selectedTipPercent) ? '#ff007f':'#909090',
+    margin:5,
+    padding:10,
+    borderRadius:50,
+  }),
 })
