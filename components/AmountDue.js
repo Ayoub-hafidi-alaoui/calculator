@@ -1,30 +1,30 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 
-export class AmountDue extends Component {
-    render() {
-        return (
+const AmountDue =({title,subTotal,tipPercent})=> (
+
             <View style={styles.amountOutput}>
                 <View style={styles.amountOutputElement}>
-                    <Text style={textStyles.accentedText}>Per Person</Text>
+                    <Text style={textStyles.accentedText}>{title}</Text>
                     <View style={styles.totalDue}>
                         <Text style={[textStyles.textWhite,textStyles.dollarSign]}>$</Text>
-                        <Text style={[textStyles.textWhite,textStyles.dollars]}>43</Text>
-                        <Text style={[textStyles.textWhite,textStyles.cents]}>.69</Text>
+                        <Text style={[textStyles.textWhite,textStyles.dollars]}>{Math.floor(subTotal*(1+(tipPercent)/100))}</Text>
+                        <Text style={[textStyles.textWhite,textStyles.cents]}>
+                            {((subTotal*(1+tipPercent)/100) - Math.floor(subTotal*(1+tipPercent)/100)).toFixed(2).slice(1)}
+                        </Text>
                     </View>
                     <Text style={textStyles.textWhite}>Total</Text>
                 </View>
                 <View style={styles.verticaleLine}/>
                 <View style={styles.amountOutputElement}>
                     <Text style={[textStyles.textWhite,textStyles.subtitle]}>Subtotal</Text>
-                    <Text style={textStyles.textWhite}>$37,99</Text>
+                    <Text style={textStyles.textWhite}>{subTotal}</Text>
                     <Text style={[textStyles.textWhite,textStyles.subtitle]}>Tip</Text>
-                    <Text style={textStyles.textWhite}>5.70</Text>
+                    <Text style={textStyles.textWhite}>${subTotal*(tipPercent/100).toFixed(2)}</Text>
                 </View>
             </View>
-        )
-    }
-}
+        
+)
 
 export default AmountDue
 
@@ -75,7 +75,7 @@ const textStyles=StyleSheet.create({
         color: '#ff007f',
         fontWeight:'900',
         fontSize:20,
-        marginBottom:4
+        marginBottom:4,
         
     },
     subtitle:{
